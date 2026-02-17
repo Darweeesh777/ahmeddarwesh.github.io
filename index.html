@@ -25,7 +25,7 @@
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Inter', sans-serif;
         }
@@ -47,7 +47,7 @@
 
         html, body {
             height: 100vh;
-            overflow: hidden; /* Strict no-scroll for desktop */
+            overflow: hidden; /* No scroll */
         }
 
         body {
@@ -65,21 +65,63 @@
             font-weight: 700;
         }
 
+        /* --- Utilities --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            position: relative;
+        }
+
+        .btn svg, .btn i { width: 24px; height: 24px; }
+
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
+        .btn-linkedin { background: #0077B5; color: white; }
+        .btn-linkedin:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3); }
+
+        .btn-email { background: var(--accent); color: var(--primary); }
+        .btn-email:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(88, 191, 145, 0.3); }
+
+        .btn-outline { background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); }
+        .btn-outline:hover { background: var(--glass); transform: translateY(-3px); border-color: var(--secondary); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         /* --- Header --- */
         header {
-            position: fixed;
-            top: 0;
             width: 100%;
-            z-index: 1000;
-            padding: 1.5rem 0; 
+            padding: 2rem 0; 
             transition: var(--transition);
         }
 
         header.scrolled {
-            padding: 0.6rem 0;
+            padding: 1rem 0;
             background: rgba(3, 26, 37, 0.9);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
+        }
+
+        [data-theme="light"] header.scrolled {
+            background: rgba(248, 250, 252, 0.9);
+            border-bottom: 1px solid rgba(6, 52, 73, 0.1);
         }
 
         .nav-inner {
@@ -101,8 +143,6 @@
             display: block;
             transition: var(--transition);
         }
-
-        header.scrolled .logo img { width: 110px; }
 
         .contact-group { display: flex; align-items: center; gap: 1.5rem; }
 
@@ -140,13 +180,13 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 0;
+            padding: 20px 0;
         }
 
         .hero-content h1 {
-            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
             line-height: 0.9;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             color: var(--secondary);
             letter-spacing: -2px;
         }
@@ -157,12 +197,12 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             font-size: 1.1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-family: var(--font-sans);
         }
 
         .hero-content p {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
             color: var(--text-dim);
             margin: 0 auto 3rem auto; 
             max-width: 800px;
@@ -170,63 +210,43 @@
             font-style: italic;
         }
 
-        /* --- Interactive Brand Mockup --- */
-        .mockup-container {
-            position: relative;
-            margin: 0 auto;
-            display: inline-block;
-        }
-
-        .squares-graphic {
-            width: 120px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            transition: var(--transition);
-            filter: drop-shadow(0 0 0 rgba(88, 191, 145, 0));
-        }
-
-        .mockup-container:hover .squares-graphic {
-            transform: translateY(-10px) rotate(5deg);
-            filter: drop-shadow(0 0 15px rgba(88, 191, 145, 0.6));
-        }
-
-        .cta-box {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            display: inline-flex;
-            gap: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .btn-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
+        .hero-ctas {
             display: flex;
-            align-items: center;
+            gap: 1.2rem;
             justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            text-decoration: none;
-            background: var(--glass);
+            flex-wrap: wrap;
+        }
+
+        /* --- AI Launcher --- */
+        #ai-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1001; }
+        .ai-launcher {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--primary); color: white;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border: 2px solid var(--secondary);
+        }
+
+        .ai-chat-box {
+            position: absolute; bottom: 75px; right: 0;
+            width: 320px; height: 400px; display: none;
+            flex-direction: column; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: var(--dark-bg);
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
         }
 
-        .btn-circle i, .btn-circle svg { width: 24px; height: 24px; }
-        .btn-whatsapp { color: #25D366; }
-        .btn-whatsapp:hover { background: #25D366; color: white; transform: translateY(-5px); }
-        .btn-linkedin { color: #0077B5; }
-        .btn-linkedin:hover { background: #0077B5; color: white; transform: translateY(-5px); }
-        .btn-email { color: var(--accent); }
-        .btn-email:hover { background: var(--accent); color: var(--primary); transform: translateY(-5px); }
-        .btn-contact { color: var(--text-main); }
-        .btn-contact:hover { border-color: var(--secondary); transform: translateY(-5px); }
+        .chat-header { padding: 1rem; background: var(--primary); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); color: white; }
+        .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .msg { padding: 8px 12px; border-radius: 14px; font-size: 0.85rem; max-width: 85%; }
+        .msg.bot { background: var(--glass); align-self: flex-start; color: var(--text-main); }
+        .msg.user { background: var(--secondary); color: var(--primary); align-self: flex-end; }
+        .chat-input { padding: 0.8rem; border-top: 1px solid var(--glass-border); display: flex; gap: 8px; }
+        .chat-input input { 
+            flex: 1; background: transparent; border: 1px solid var(--glass-border); 
+            border-radius: 8px; padding: 6px 12px; color: var(--text-main); outline: none;
+        }
 
         /* --- Footer --- */
         footer {
@@ -236,10 +256,15 @@
             background: rgba(3, 26, 37, 0.2);
         }
 
-        .footer-logo {
+        .footer-logo-container {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-logo-container img {
             width: 140px;
             height: auto;
-            margin-bottom: 1.5rem;
         }
 
         .address-line {
@@ -247,41 +272,43 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             color: var(--text-dim);
             font-weight: 500;
             font-size: 0.95rem;
-            white-space: nowrap; /* Locked to one line */
+            white-space: nowrap; 
         }
 
-        .address-line i { flex-shrink: 0; color: var(--accent); }
-        .address-line a { color: inherit; text-decoration: none; transition: var(--transition); }
-        .address-line a:hover { color: var(--secondary); }
+        .address-line i { flex-shrink: 0; }
+        .address-line a { color: inherit; text-decoration: none; }
+
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .social-links a { color: var(--text-dim); transition: var(--transition); }
+        .social-links a:hover { color: var(--secondary); transform: translateY(-5px); }
 
         .copyright-line {
             color: var(--text-dim);
             font-size: 0.85rem;
-            white-space: nowrap; /* Locked to one line */
+            white-space: nowrap; 
             display: block;
             margin: 0 auto;
-            opacity: 0.8;
+            padding: 0 1rem;
         }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
             .social-tray-header { display: none; }
             .logo img { width: 140px; }
-            header { padding: 1rem 0; }
         }
         @media (max-width: 768px) {
-            html, body { overflow: auto; height: auto; }
+            html, body { overflow: auto; height: auto; min-height: 100vh; } 
+            .container { padding: 0 1rem; } 
+            .hero-content h1 { font-size: 3.2rem; }
+            .hero-ctas { justify-content: center; max-width: 100%; margin: 2rem auto 0; }
             .hero { padding: 120px 0 60px 0; }
-            .hero-content h1 { font-size: 3rem; }
-            .address-line { font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 1rem; }
-            .copyright-line { font-size: 0.7rem; }
-            .cta-box { gap: 1rem; padding: 1rem; }
-            .btn-circle { width: 48px; height: 48px; }
             .logo img { width: 120px; }
+            .address-line { white-space: nowrap; font-size: 0.72rem; }
+            .copyright-line { white-space: nowrap; font-size: 0.72rem; }
         }
     </style>
 </head>
@@ -290,23 +317,22 @@
     <header id="header">
         <div class="container nav-inner">
             <a href="https://clyvern.com/" class="logo" target="_blank" aria-label="Visit Clyvern Website">
-                <!-- Dark Mode: Specific Photo, Light Mode: Logo 2 (handled by script) -->
                 <img id="header-logo" src="24417692-ced0-4342-92aa-ffaed687c206.png" alt="Clyvern Logo" onerror="this.style.display='none'">
             </a>
 
             <div class="contact-group">
                 <div class="social-tray-header">
-                    <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="20"></i></a>
-                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram"><i data-lucide="instagram" size="20"></i></a>
-                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook"><i data-lucide="facebook" size="20"></i></a>
-                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp"><i data-lucide="message-circle" size="20"></i></a>
+                    <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i data-lucide="linkedin" size="20"></i></a>
+                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram" aria-label="Instagram"><i data-lucide="instagram" size="20"></i></a>
+                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook" aria-label="Facebook"><i data-lucide="facebook" size="20"></i></a>
+                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp" aria-label="WhatsApp"><i data-lucide="message-circle" size="20"></i></a>
                 </div>
                 
                 <a href="tel:+201022434470" class="phone-link">
                     <i data-lucide="phone" size="18"></i> +20 102 243 4470
                 </a>
 
-                <button id="theme-toggle" style="background:none; border:none; color:var(--text-main); cursor:pointer; display: flex;">
+                <button id="theme-toggle" aria-label="Toggle Light/Dark Mode" style="background:none; border:none; color:var(--text-main); cursor:pointer; display: flex; align-items: center;">
                     <i data-lucide="moon"></i>
                 </button>
             </div>
@@ -320,47 +346,66 @@
                 <h2 class="reveal active">Project Coordinator</h2>
                 <p class="reveal active">Leading structured execution and digital transformation at <strong>Clyvern</strong>.</p>
                 
-                <div class="mockup-container">
-                    <!-- The Interactive Squares Branding Asset -->
-                    <img src="Artboard 1 copy 3.png" class="squares-graphic reveal active" alt="Branding Graphic">
-                    
-                    <div class="cta-box reveal active">
-                        <a href="https://wa.me/201022434470" target="_blank" class="btn-circle btn-whatsapp" title="WhatsApp">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.554 4.189 1.605 6.012l-1.706 6.233 6.376-1.673a11.862 11.862 0 005.708 1.467h.005c6.635 0 12.032-5.397 12.035-12.031a11.816 11.816 0 00-3.486-8.503z"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" class="btn-circle btn-linkedin" title="LinkedIn">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
-                        <a href="mailto:adarwesh@clyvern.com" class="btn-circle btn-email" title="Email">
-                            <i data-lucide="mail"></i>
-                        </a>
-                        <button onclick="downloadVCard()" class="btn-circle btn-contact" title="Save Contact">
-                            <i data-lucide="user-plus"></i>
-                        </button>
-                    </div>
+                <div class="hero-ctas reveal active">
+                    <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.554 4.189 1.605 6.012l-1.706 6.233 6.376-1.673a11.862 11.862 0 005.708 1.467h.005c6.635 0 12.032-5.397 12.035-12.031a11.816 11.816 0 00-3.486-8.503z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" class="btn btn-linkedin" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="mailto:adarwesh@clyvern.com" class="btn btn-email" title="Email">
+                        <i data-lucide="mail"></i>
+                    </a>
+                    <button onclick="downloadVCard()" class="btn btn-outline" title="Save Contact">
+                        <i data-lucide="user-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- AI Assistant Widget -->
+    <div id="ai-widget">
+        <div class="glass-card ai-chat-box" id="chat-box">
+            <div class="chat-header">
+                <span style="font-weight:bold; font-family: var(--font-sans); display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="sparkles" size="18" style="color:var(--secondary)"></i> Ahmed's AI
+                </span>
+                <i data-lucide="x" style="cursor:pointer" onclick="toggleChat()"></i>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="msg bot">Hello! I'm Ahmed's AI assistant. How can I help you today? Ask about my work at Clyvern or how to get in touch!</div>
+            </div>
+            <form class="chat-input" onsubmit="handleChat(event)">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button type="submit" style="background:none; border:none; color:var(--secondary); cursor:pointer"><i data-lucide="send"></i></button>
+            </form>
+        </div>
+        <div class="ai-launcher" onclick="toggleChat()">
+            <i data-lucide="bot" size="28"></i>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            <img src="24417692-ced0-4342-92aa-ffaed687c206.png" class="footer-logo" alt="Clyvern Footer Logo">
+            <div class="footer-logo-container">
+                <img src="24417692-ced0-4342-92aa-ffaed687c206.png" alt="Clyvern Footer Logo" onerror="this.style.display='none'">
+            </div>
             
             <div class="address-line">
-                <i data-lucide="map-pin" size="18"></i> 
+                <i data-lucide="map-pin" size="18" style="color: var(--secondary)"></i> 
                 <a href="https://maps.app.goo.gl/qhtbebM3HegQPoU57?g_st=aw" target="_blank">
                     Plot 242 and 243 (Building W51), Second Sector, New Cairo
                 </a>
             </div>
             
             <div class="social-links">
-                <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank"><i data-lucide="linkedin"></i></a>
-                <a href="https://www.instagram.com/clyvernco/" target="_blank"><i data-lucide="instagram"></i></a>
-                <a href="https://www.facebook.com/clyvernco" target="_blank"><i data-lucide="facebook"></i></a>
-                <a href="tel:+201022434470"><i data-lucide="phone"></i></a>
-                <a href="mailto:adarwesh@clyvern.com"><i data-lucide="mail"></i></a>
-                <a href="https://maps.app.goo.gl/qhtbebM3HegQPoU57?g_st=aw" target="_blank"><i data-lucide="map-pin"></i></a>
+                <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank"><i data-lucide="linkedin" size="24"></i></a>
+                <a href="https://www.instagram.com/clyvernco/" target="_blank"><i data-lucide="instagram" size="24"></i></a>
+                <a href="https://www.facebook.com/clyvernco" target="_blank"><i data-lucide="facebook" size="24"></i></a>
+                <a href="tel:+201022434470"><i data-lucide="phone" size="24"></i></a>
+                <a href="mailto:adarwesh@clyvern.com"><i data-lucide="mail" size="24"></i></a>
+                <a href="https://maps.app.goo.gl/qhtbebM3HegQPoU57?g_st=aw" target="_blank"><i data-lucide="map-pin" size="24"></i></a>
             </div>
             <p class="copyright-line">&copy; 2026 Ahmed Darwesh | Clyvern. Built for the future of tech.</p>
         </div>
@@ -368,6 +413,24 @@
 
     <script>
         lucide.createIcons();
+
+        // Header Scroll Optimization
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Theme Toggle Logic
         const themeToggle = document.getElementById('theme-toggle');
@@ -380,7 +443,6 @@
             body.setAttribute('data-theme', newTheme);
             themeToggle.innerHTML = newTheme === 'dark' ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
             
-            // Header Logo Swap
             if (newTheme === 'dark') {
                 headerLogo.src = '24417692-ced0-4342-92aa-ffaed687c206.png';
             } else {
@@ -389,6 +451,32 @@
             
             lucide.createIcons();
         });
+
+        function toggleChat() {
+            const box = document.getElementById('chat-box');
+            box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+            if(box.style.display === 'flex') document.getElementById('user-input').focus();
+        }
+
+        function handleChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('user-input');
+            const messages = document.getElementById('chat-messages');
+            if (!input.value.trim()) return;
+
+            messages.innerHTML += `<div class="msg user">${input.value}</div>`;
+            const query = input.value.toLowerCase();
+            input.value = '';
+
+            setTimeout(() => {
+                let response = "Ahmed is currently leading structured execution at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 102 243 4470.";
+                if (query.includes('clyvern')) response = "At Clyvern, Ahmed manages product lifecycles and leads digital transformation initiatives.";
+                if (query.includes('contact') || query.includes('phone')) response = "Best contact is via WhatsApp or calling: +20 102 243 4470.";
+                
+                messages.innerHTML += `<div class="msg bot">${response}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 600);
+        }
 
         function downloadVCard() {
             const vCardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Ahmed Darwesh\nORG:Clyvern\nTITLE:Project Coordinator\nEMAIL:adarwesh@clyvern.com\nTEL;TYPE=CELL:+201022434470\nADR;TYPE=WORK:;;Plot 242 and 243 (Building W51), Second Sector;New Cairo;;;Egypt\nEND:VCARD";
