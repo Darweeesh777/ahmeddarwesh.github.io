@@ -476,17 +476,24 @@
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
+            .container { padding: 0 1.25rem; } /* Reduced padding for mobile left/right alignment */
             .social-tray-header { display: none; }
             .logo img { width: 140px; }
             .hero { padding-top: 180px; }
         }
         @media (max-width: 768px) {
+            .container { padding: 0 1rem; } /* Most left position for logo on mobile */
             .hero-content h1 { font-size: 3rem; }
             .hero-content p { font-size: 1.2rem; }
-            .contact-group { gap: 1rem; }
-            .brand-watermark { width: 85vw; opacity: 0.18; }
+            .contact-group { gap: 0.8rem; }
+            .brand-watermark { 
+                width: 90vw; 
+                opacity: 0.24; /* Increased opacity to appear clearly in every moment */
+                top: 50%;
+            }
             .hero-ctas { flex-direction: column; align-items: stretch; max-width: 300px; margin: 2rem auto 0; }
             .hero { padding-top: 160px; }
+            .logo img { width: 120px; }
         }
     </style>
 </head>
