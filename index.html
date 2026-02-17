@@ -218,12 +218,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60vw;
-            max-width: 600px;
+            width: 70vw;
+            max-width: 800px;
             z-index: -1;
-            opacity: 0.05; /* Subtle watermark */
+            opacity: 0.04; /* Subtle backdrop */
             pointer-events: none;
-            filter: grayscale(1) brightness(2);
+            filter: grayscale(1) brightness(1.5);
         }
 
         [data-theme="light"] .brand-watermark {
@@ -418,19 +418,19 @@
             .hero-content h1 { font-size: 3.5rem; }
             .hero-content p { font-size: 1.2rem; }
             .contact-group { gap: 1rem; }
-            .brand-watermark { width: 80vw; }
+            .brand-watermark { width: 90vw; }
         }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- Brand Watermark (Logo as background) -->
-    <img src="logo.Artboard 1.png.png" class="brand-watermark" alt="Clyvern Background Watermark" onerror="this.style.display='none'">
+    <!-- Updated Background (Artboard 1.png) -->
+    <img src="Artboard 1.png" class="brand-watermark" alt="Brand Background" onerror="this.style.display='none'">
 
     <header id="header">
         <div class="container nav-inner">
             <a href="#" class="logo">
-                <img src="logo.Artboard 1.png.png" alt="Clyvern Logo" onerror="this.style.display='none'">
+                <img src="logo.pdf.png" alt="Clyvern Logo" onerror="this.style.display='none'">
                 CLYVERN
             </a>
 
