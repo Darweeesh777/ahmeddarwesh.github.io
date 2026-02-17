@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -34,8 +34,8 @@
             --dark-bg: #f0f4f8;
             --text-main: #063449;
             --text-dim: #475569;
-            --glass: rgba(6, 52, 73, 0.05);
-            --glass-border: rgba(6, 52, 73, 0.1);
+            --glass: rgba(6, 52, 73, 0.08);
+            --glass-border: rgba(6, 52, 73, 0.15);
         }
 
         * {
@@ -92,6 +92,12 @@
             border: none;
             font-family: var(--font-sans);
             font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
         }
 
         .btn svg {
@@ -137,6 +143,8 @@
 
         .btn-outline:hover {
             background: var(--glass);
+            transform: translateY(-3px);
+            border-color: var(--secondary);
         }
 
         .reveal {
@@ -176,19 +184,20 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--text-main);
             text-decoration: none;
-            font-family: var(--font-serif);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
         }
 
         .logo img {
-            width: 140px; /* Big full size as requested */
+            width: 180px; /* Big full size stand-alone logo */
             height: auto;
             border-radius: 4px;
-            transition: var(--transition);
+            display: block;
         }
 
         .contact-group {
@@ -199,7 +208,7 @@
 
         .social-tray-header {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             align-items: center;
             border-right: 1px solid var(--glass-border);
             padding-right: 1.5rem;
@@ -208,6 +217,8 @@
         .social-tray-header a {
             color: var(--text-dim);
             transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
 
         .social-tray-header a:hover {
@@ -223,6 +234,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: var(--transition);
         }
 
         .phone-link:hover {
@@ -232,20 +244,21 @@
         /* --- Background Brand Watermark --- */
         .brand-watermark {
             position: fixed;
-            top: 50%;
+            top: 55%; /* Centered slightly lower for hero framing */
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70vw;
-            max-width: 850px;
+            width: 75vw;
+            max-width: 900px;
             z-index: -1;
-            opacity: 0.25;
+            opacity: 0.28; 
             pointer-events: none;
-            filter: brightness(1.3) contrast(1.1);
+            filter: brightness(1.2) contrast(1.1);
+            transition: opacity 0.5s ease, filter 0.5s ease;
         }
 
         [data-theme="light"] .brand-watermark {
-            opacity: 0.15; /* Increased for better visibility in light mode */
-            filter: brightness(0.6) contrast(1.2); /* Adjusted to show against light background */
+            opacity: 0.18;
+            filter: brightness(0.5) contrast(1.3) saturate(0.5);
         }
 
         /* --- Hero Section --- */
@@ -256,7 +269,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 120px 0;
+            padding: 140px 0;
             text-align: center;
         }
 
@@ -276,35 +289,36 @@
         .hero-content h2 {
             color: var(--accent);
             font-weight: 400;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
             font-family: var(--font-sans);
         }
 
         .hero-content h1 {
-            font-size: 5.5rem;
+            font-size: clamp(3.5rem, 8vw, 6rem);
             line-height: 1;
             margin-bottom: 1.5rem;
             color: var(--secondary);
+            letter-spacing: -2px;
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
             color: var(--text-dim);
-            margin: 0 auto 3rem auto;
-            max-width: 700px;
+            margin: 0 auto 3.5rem auto;
+            max-width: 800px;
             font-family: var(--font-serif);
             font-style: italic;
         }
 
         .hero-ctas {
             display: flex;
-            gap: 1.2rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2.5rem; /* Moved buttons under a little bit more */
+            margin-top: 3rem;
         }
 
         /* --- AI Assistant Widget --- */
@@ -316,8 +330,8 @@
         }
 
         .ai-launcher {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             background: var(--primary);
             color: white;
@@ -325,77 +339,107 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             border: 2px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .ai-launcher:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .ai-chat-box {
             position: absolute;
-            bottom: 80px;
+            bottom: 85px;
             right: 0;
-            width: 320px;
-            height: 400px;
+            width: 340px;
+            height: 450px;
             display: none;
             flex-direction: column;
             overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .chat-header {
-            padding: 1rem;
+            padding: 1.2rem;
             background: var(--primary);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .chat-messages {
             flex: 1;
-            padding: 1rem;
+            padding: 1.2rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            background: rgba(3, 26, 37, 0.4);
         }
 
         .msg {
-            padding: 8px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.9rem;
             max-width: 85%;
+            line-height: 1.4;
         }
 
-        .msg.bot { background: var(--glass); align-self: flex-start; }
-        .msg.user { background: var(--secondary); color: var(--primary); align-self: flex-end; }
+        .msg.bot { 
+            background: var(--glass); 
+            align-self: flex-start; 
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .msg.user { 
+            background: var(--secondary); 
+            color: var(--primary); 
+            align-self: flex-end; 
+            border-bottom-right-radius: 4px;
+            font-weight: 500;
+        }
 
         .chat-input {
             padding: 1rem;
             border-top: 1px solid var(--glass-border);
             display: flex;
-            gap: 5px;
+            gap: 8px;
+            background: var(--dark-bg);
         }
 
         .chat-input input {
             flex: 1;
-            background: transparent;
-            border: none;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 8px 12px;
             color: white;
             outline: none;
             font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .chat-input input:focus {
+            border-color: var(--secondary);
         }
 
         /* --- Footer --- */
         footer {
-            padding: 3rem 0;
+            padding: 4rem 0;
             border-top: 1px solid var(--glass-border);
             text-align: center;
             margin-top: auto;
+            background: rgba(3, 26, 37, 0.2);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .social-links a {
@@ -405,7 +449,7 @@
 
         .social-links a:hover {
             color: var(--secondary);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
         /* --- Modals --- */
@@ -415,57 +459,59 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 2000;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             padding: 3rem;
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
+            position: relative;
         }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
             .social-tray-header { display: none; }
+            .logo img { width: 140px; }
         }
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3.5rem; }
+            .hero-content h1 { font-size: 3rem; }
             .hero-content p { font-size: 1.2rem; }
             .contact-group { gap: 1rem; }
-            .brand-watermark { width: 90vw; opacity: 0.15; }
-            .logo img { width: 100px; }
+            .brand-watermark { width: 85vw; opacity: 0.18; }
+            .hero-ctas { flex-direction: column; align-items: stretch; max-width: 300px; margin: 2rem auto 0; }
         }
     </style>
 </head>
 <body data-theme="dark">
 
     <!-- Brand Background Watermark -->
-    <img src="Artboard 1.png" class="brand-watermark" alt="Brand Background" onerror="this.style.display='none'">
+    <img src="Artboard 1.png" class="brand-watermark" alt="Clyvern Background Watermark" onerror="this.style.display='none'">
 
     <header id="header">
         <div class="container nav-inner">
-            <a href="https://clyvern.com/" class="logo" target="_blank">
+            <a href="https://clyvern.com/" class="logo" target="_blank" aria-label="Visit Clyvern Website">
                 <img src="Artboard 1.png" alt="Clyvern Logo" onerror="this.style.display='none'">
-                CLYVERN
             </a>
 
             <div class="contact-group">
                 <div class="social-tray-header">
-                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="18"></i></a>
-                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram"><i data-lucide="instagram" size="18"></i></a>
-                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook"><i data-lucide="facebook" size="18"></i></a>
-                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp"><i data-lucide="message-circle" size="18"></i></a>
+                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i data-lucide="linkedin" size="20"></i></a>
+                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram" aria-label="Instagram"><i data-lucide="instagram" size="20"></i></a>
+                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook" aria-label="Facebook"><i data-lucide="facebook" size="20"></i></a>
+                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp" aria-label="WhatsApp"><i data-lucide="message-circle" size="20"></i></a>
                 </div>
                 
-                <a href="tel:+201022434470" class="phone-link">
-                    <i data-lucide="phone" size="16"></i> +20 102 243 4470
+                <a href="tel:+201022434470" class="phone-link" aria-label="Call Ahmed Darwesh">
+                    <i data-lucide="phone" size="18"></i> +20 102 243 4470
                 </a>
 
-                <button id="theme-toggle" style="background:none; border:none; color:var(--text-main); cursor:pointer;">
+                <button id="theme-toggle" aria-label="Toggle Light/Dark Mode" style="background:none; border:none; color:var(--text-main); cursor:pointer; display: flex; align-items: center;">
                     <i data-lucide="moon"></i>
                 </button>
             </div>
@@ -480,15 +526,15 @@
                 <p class="reveal">Leading structured execution and digital transformation at <strong>Clyvern</strong>.</p>
                 
                 <div class="hero-ctas reveal">
-                    <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp">
+                    <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp" aria-label="Message on WhatsApp">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.554 4.189 1.605 6.012l-1.706 6.233 6.376-1.673a11.862 11.862 0 005.708 1.467h.005c6.635 0 12.032-5.397 12.035-12.031a11.816 11.816 0 00-3.486-8.503z"/></svg>
                         WhatsApp
                     </a>
-                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" class="btn btn-linkedin">
+                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" class="btn btn-linkedin" aria-label="Visit LinkedIn Profile">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         LinkedIn
                     </a>
-                    <button onclick="downloadVCard()" class="btn btn-outline">
+                    <button onclick="downloadVCard()" class="btn btn-outline" aria-label="Download vCard Contact">
                         <i data-lucide="user-plus"></i> Save Contact
                     </button>
                 </div>
@@ -500,19 +546,23 @@
     <div id="ai-widget">
         <div class="glass-card ai-chat-box" id="chat-box">
             <div class="chat-header">
-                <span style="font-weight:bold"><i data-lucide="bot" style="vertical-align:middle; margin-right:5px"></i> Ahmed's AI</span>
-                <i data-lucide="x" style="cursor:pointer" onclick="toggleChat()"></i>
+                <span style="font-weight:bold; font-family: var(--font-sans); display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="sparkles" size="18" style="color:var(--secondary)"></i> Ahmed's AI
+                </span>
+                <i data-lucide="x" style="cursor:pointer" onclick="toggleChat()" aria-label="Close Chat"></i>
             </div>
             <div class="chat-messages" id="chat-messages">
                 <div class="msg bot">Hello! I'm Ahmed's AI assistant. How can I help you today? You can ask about my work at Clyvern or how to get in touch!</div>
             </div>
             <form class="chat-input" onsubmit="handleChat(event)">
-                <input type="text" id="user-input" placeholder="Type a question...">
-                <button type="submit" style="background:none; border:none; color:var(--secondary); cursor:pointer"><i data-lucide="send"></i></button>
+                <input type="text" id="user-input" placeholder="Type a message..." aria-label="Message text">
+                <button type="submit" style="background:none; border:none; color:var(--secondary); cursor:pointer; display: flex;" aria-label="Send message">
+                    <i data-lucide="send" size="20"></i>
+                </button>
             </form>
         </div>
-        <div class="ai-launcher" onclick="toggleChat()">
-            <i data-lucide="sparkles"></i>
+        <div class="ai-launcher" onclick="toggleChat()" aria-label="Toggle AI Chat">
+            <i data-lucide="bot" size="28"></i>
         </div>
     </div>
 
@@ -528,13 +578,13 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank"><i data-lucide="linkedin"></i></a>
-                <a href="https://www.instagram.com/clyvernco/" target="_blank"><i data-lucide="instagram"></i></a>
-                <a href="https://www.facebook.com/clyvernco" target="_blank"><i data-lucide="facebook"></i></a>
-                <a href="tel:+201022434470"><i data-lucide="phone"></i></a>
-                <a href="mailto:ahmed@clyvern.com"><i data-lucide="mail"></i></a>
+                <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" aria-label="LinkedIn"><i data-lucide="linkedin" size="24"></i></a>
+                <a href="https://www.instagram.com/clyvernco/" target="_blank" aria-label="Instagram"><i data-lucide="instagram" size="24"></i></a>
+                <a href="https://www.facebook.com/clyvernco" target="_blank" aria-label="Facebook"><i data-lucide="facebook" size="24"></i></a>
+                <a href="tel:+201022434470" aria-label="Phone"><i data-lucide="phone" size="24"></i></a>
+                <a href="mailto:ahmed@clyvern.com" aria-label="Email"><i data-lucide="mail" size="24"></i></a>
             </div>
-            <p style="color:var(--text-dim)">&copy; 2024 Ahmed Darwesh | Clyvern. Built with ❤️ for the future of tech.</p>
+            <p style="color:var(--text-dim); font-size: 0.9rem;">&copy; 2024 Ahmed Darwesh | Clyvern. Built for the future of tech.</p>
         </div>
     </footer>
 
@@ -577,7 +627,11 @@
         // AI Chat Logic
         function toggleChat() {
             const box = document.getElementById('chat-box');
-            box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+            const isVisible = box.style.display === 'flex';
+            box.style.display = isVisible ? 'none' : 'flex';
+            if(!isVisible) {
+                document.getElementById('user-input').focus();
+            }
         }
 
         function handleChat(e) {
@@ -592,8 +646,8 @@
 
             setTimeout(() => {
                 let response = "Ahmed is currently leading structured execution at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 102 243 4470.";
-                if (query.includes('clyvern')) response = "At Clyvern, Ahmed manages product lifecycles and technical coordination.";
-                if (query.includes('contact') || query.includes('phone') || query.includes('number')) response = "You can call Ahmed at +20 102 243 4470 or use the WhatsApp link for a quick chat.";
+                if (query.includes('clyvern')) response = "At Clyvern, Ahmed manages product lifecycles and leads digital transformation initiatives.";
+                if (query.includes('contact') || query.includes('phone') || query.includes('number')) response = "The best way to reach Ahmed is via WhatsApp or by calling his direct mobile: +20 102 243 4470.";
                 
                 messages.innerHTML += `<div class="msg bot">${response}</div>`;
                 messages.scrollTop = messages.scrollHeight;
@@ -611,7 +665,9 @@
             const a = document.createElement('a');
             a.href = url;
             a.download = 'Ahmed_Darwesh_Clyvern.vcf';
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
         }
     </script>
 </body>
