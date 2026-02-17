@@ -109,7 +109,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1.2rem 0; /* Header moved up */
+            padding: 1.5rem 0;
             transition: var(--transition);
         }
 
@@ -208,7 +208,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 300px 0 160px 0; /* Whole page content moved down */
+            padding: 320px 0 160px 0; /* Page content moved down */
             text-align: center;
         }
 
@@ -233,25 +233,10 @@
         .hero-content p {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
             color: var(--text-dim);
-            margin: 0 auto 1.5rem auto;
+            margin: 0 auto 3rem auto; /* Adjusted margin since inline logo is removed */
             max-width: 800px;
             font-family: var(--font-serif);
             font-style: italic;
-        }
-
-        /* Center logo in content as requested */
-        .hero-inline-logo {
-            width: 140px;
-            height: auto;
-            margin: 2rem auto;
-            display: block;
-            opacity: 0.9;
-            transition: var(--transition);
-        }
-
-        .hero-inline-logo:hover {
-            transform: scale(1.05);
-            opacity: 1;
         }
 
         .hero-ctas {
@@ -324,9 +309,9 @@
         .copyright-line {
             color: var(--text-dim);
             font-size: 0.9rem;
-            white-space: nowrap; /* Forces one line as requested */
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: nowrap; /* Forced one line as requested */
+            display: block;
+            margin: 0 auto;
             padding: 0 1rem;
         }
 
@@ -336,18 +321,18 @@
             .social-tray-header { display: none; }
             .logo img { width: 140px; }
             header.scrolled .logo img { width: 90px; }
-            .hero { padding-top: 240px; }
+            .hero { padding-top: 280px; }
         }
         @media (max-width: 768px) {
             .container { padding: 0 0.8rem; } /* Pushes logo as far left as possible */
             .hero-content h1 { font-size: 2.8rem; }
             .brand-watermark { width: 90vw; opacity: 0.24; top: 50%; }
-            .hero-ctas { flex-direction: column; align-items: stretch; max-width: 280px; margin: 2rem auto 0; }
-            .hero { padding-top: 200px; }
+            .hero-ctas { flex-direction: column; align-items: stretch; max-width: 280px; margin: 2.5rem auto 0; }
+            .hero { padding-top: 240px; }
             .logo img { width: 120px; }
-            header { padding: 0.8rem 0; }
+            header { padding: 1rem 0; }
             .address-line { white-space: normal; line-height: 1.4; padding: 0 1.5rem; }
-            .copyright-line { white-space: normal; } /* Allow wrap on tiny screens to avoid cutting text */
+            .copyright-line { white-space: normal; } /* Allow wrap only on extremely small devices for safety */
         }
     </style>
 </head>
@@ -387,9 +372,6 @@
                 <h2 class="reveal">Project Coordinator</h2>
                 <h1 class="reveal">Ahmed Darwesh</h1>
                 <p class="reveal">Leading structured execution and digital transformation at <strong>Clyvern</strong>.</p>
-                
-                <!-- Logo appearing between tagline and buttons -->
-                <img src="logo.pdf.png" class="hero-inline-logo reveal" alt="Clyvern Logo" onerror="this.style.display='none'">
                 
                 <div class="hero-ctas reveal">
                     <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp">
