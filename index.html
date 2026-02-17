@@ -80,17 +80,23 @@
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: var(--transition);
             cursor: pointer;
             border: none;
             font-family: var(--font-sans);
+            font-size: 0.95rem;
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
         }
 
         .btn-primary {
@@ -111,6 +117,16 @@
         .btn-whatsapp:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-linkedin {
+            background: #0077B5;
+            color: white;
+        }
+
+        .btn-linkedin:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3);
         }
 
         .btn-outline {
@@ -202,10 +218,10 @@
             font-weight: 600;
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .phone-link:hover {
@@ -219,15 +235,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 70vw;
-            max-width: 800px;
+            max-width: 850px;
             z-index: -1;
-            opacity: 0.04; /* Subtle backdrop */
+            opacity: 0.12; /* Increased opacity to make it more apparent */
             pointer-events: none;
-            filter: grayscale(1) brightness(1.5);
+            filter: grayscale(0.5) contrast(1.1);
         }
 
         [data-theme="light"] .brand-watermark {
-            opacity: 0.03;
+            opacity: 0.08;
             filter: grayscale(1) invert(1);
         }
 
@@ -418,13 +434,13 @@
             .hero-content h1 { font-size: 3.5rem; }
             .hero-content p { font-size: 1.2rem; }
             .contact-group { gap: 1rem; }
-            .brand-watermark { width: 90vw; }
+            .brand-watermark { width: 90vw; opacity: 0.1; }
         }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- Updated Background (Artboard 1.png) -->
+    <!-- Updated Background (Artboard 1.png) - More apparent opacity -->
     <img src="Artboard 1.png" class="brand-watermark" alt="Brand Background" onerror="this.style.display='none'">
 
     <header id="header">
@@ -436,14 +452,14 @@
 
             <div class="contact-group">
                 <div class="social-tray-header">
-                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="18"></i></a>
+                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="18"></i></a>
                     <a href="https://instagram.com" target="_blank" title="Instagram"><i data-lucide="instagram" size="18"></i></a>
                     <a href="https://facebook.com" target="_blank" title="Facebook"><i data-lucide="facebook" size="18"></i></a>
-                    <a href="https://wa.me/201234567890" target="_blank" title="WhatsApp"><i data-lucide="message-circle" size="18"></i></a>
+                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp"><i data-lucide="message-circle" size="18"></i></a>
                 </div>
                 
-                <a href="tel:+201234567890" class="phone-link">
-                    <i data-lucide="phone" size="16"></i> +20 123 456 7890
+                <a href="tel:+201022434470" class="phone-link">
+                    <i data-lucide="phone" size="16"></i> +20 102 243 4470
                 </a>
 
                 <button id="theme-toggle" style="background:none; border:none; color:var(--text-main); cursor:pointer;">
@@ -461,17 +477,16 @@
                 <p class="reveal">Orchestrating digital excellence and driving innovation through precision coordination at <strong>Clyvern</strong>.</p>
                 
                 <div class="hero-ctas reveal">
-                    <a href="https://wa.me/201234567890" target="_blank" class="btn btn-whatsapp">
-                        <i data-lucide="message-circle"></i> Chat on WhatsApp
+                    <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.554 4.189 1.605 6.012l-1.706 6.233 6.376-1.673a11.862 11.862 0 005.708 1.467h.005c6.635 0 12.032-5.397 12.035-12.031a11.816 11.816 0 00-3.486-8.503z"/></svg>
+                        WhatsApp
                     </a>
-                    <a href="https://linkedin.com" target="_blank" class="btn btn-primary">
-                        <i data-lucide="linkedin"></i> LinkedIn Profile
+                    <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank" class="btn btn-linkedin">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
                     </a>
                     <button onclick="downloadVCard()" class="btn btn-outline">
                         <i data-lucide="user-plus"></i> Save Contact
-                    </button>
-                    <button class="btn btn-outline" onclick="showModal('qr')">
-                        <i data-lucide="qr-code"></i> Connect Instantly
                     </button>
                 </div>
             </div>
@@ -510,10 +525,10 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="#"><i data-lucide="linkedin"></i></a>
-                <a href="#"><i data-lucide="instagram"></i></a>
-                <a href="#"><i data-lucide="facebook"></i></a>
-                <a href="tel:+201234567890"><i data-lucide="phone"></i></a>
+                <a href="https://linkedin.com/in/ahmeddarwesh" target="_blank"><i data-lucide="linkedin"></i></a>
+                <a href="https://instagram.com" target="_blank"><i data-lucide="instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i data-lucide="facebook"></i></a>
+                <a href="tel:+201022434470"><i data-lucide="phone"></i></a>
                 <a href="mailto:ahmed@clyvern.com"><i data-lucide="mail"></i></a>
             </div>
             <p style="color:var(--text-dim)">&copy; 2024 Ahmed Darwesh | Clyvern. Built with ❤️ for the future of tech.</p>
@@ -573,30 +588,13 @@
             input.value = '';
 
             setTimeout(() => {
-                let response = "Ahmed is currently coordinating projects at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 123 456 7890.";
+                let response = "Ahmed is currently coordinating projects at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 102 243 4470.";
                 if (query.includes('clyvern')) response = "At Clyvern, Ahmed manages product lifecycles and technical coordination.";
-                if (query.includes('contact') || query.includes('phone') || query.includes('number')) response = "You can call Ahmed at +20 123 456 7890 or use the WhatsApp link for a quick chat.";
+                if (query.includes('contact') || query.includes('phone') || query.includes('number')) response = "You can call Ahmed at +20 102 243 4470 or use the WhatsApp link for a quick chat.";
                 
                 messages.innerHTML += `<div class="msg bot">${response}</div>`;
                 messages.scrollTop = messages.scrollHeight;
             }, 600);
-        }
-
-        // Modals
-        function showModal(type) {
-            const modal = document.getElementById('modal');
-            const body = document.getElementById('modal-body');
-            modal.style.display = 'flex';
-
-            if (type === 'qr') {
-                body.innerHTML = `
-                    <h3>Scan Profile</h3>
-                    <div style="background:white; padding:10px; display:inline-block; margin:20px 0; border-radius:10px;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/ahmeddarwesh" alt="QR Code">
-                    </div>
-                    <p>Connect instantly with Ahmed Darwesh</p>
-                `;
-            }
         }
 
         function closeModal() {
@@ -604,7 +602,7 @@
         }
 
         function downloadVCard() {
-            const vCardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Ahmed Darwesh\nORG:Clyvern\nTITLE:Project Coordinator\nTEL;TYPE=CELL:+201234567890\nEND:VCARD";
+            const vCardData = "BEGIN:VCARD\nVERSION:3.0\nFN:Ahmed Darwesh\nORG:Clyvern\nTITLE:Project Coordinator\nTEL;TYPE=CELL:+201022434470\nEND:VCARD";
             const blob = new Blob([vCardData], { type: 'text/vcard' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
