@@ -269,7 +269,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 140px 0;
+            padding: 220px 0 140px 0; /* Increased top padding to move the page down */
             text-align: center;
         }
 
@@ -478,6 +478,7 @@
         @media (max-width: 992px) {
             .social-tray-header { display: none; }
             .logo img { width: 140px; }
+            .hero { padding-top: 180px; }
         }
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 3rem; }
@@ -485,6 +486,7 @@
             .contact-group { gap: 1rem; }
             .brand-watermark { width: 85vw; opacity: 0.18; }
             .hero-ctas { flex-direction: column; align-items: stretch; max-width: 300px; margin: 2rem auto 0; }
+            .hero { padding-top: 160px; }
         }
     </style>
 </head>
