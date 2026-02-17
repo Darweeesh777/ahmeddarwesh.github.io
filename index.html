@@ -87,12 +87,16 @@
         }
 
         .btn svg { width: 20px; height: 20px; }
+
         .btn-whatsapp { background: #25D366; color: white; }
         .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
         .btn-linkedin { background: #0077B5; color: white; }
         .btn-linkedin:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3); }
+
         .btn-email { background: var(--accent); color: var(--primary); }
         .btn-email:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(88, 191, 145, 0.3); }
+
         .btn-outline { background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); }
         .btn-outline:hover { background: var(--glass); transform: translateY(-3px); border-color: var(--secondary); }
 
@@ -356,7 +360,8 @@
     <header id="header">
         <div class="container nav-inner">
             <a href="https://clyvern.com/" class="logo" target="_blank" aria-label="Visit Clyvern Website">
-                <img src="Artboard 1.png" alt="Clyvern Logo" onerror="this.style.display='none'">
+                <!-- Header logo uses dynamic photo in Dark Mode -->
+                <img id="header-logo" src="24417692-ced0-4342-92aa-ffaed687c206.png" alt="Clyvern Logo" onerror="this.style.display='none'">
             </a>
 
             <div class="contact-group">
@@ -429,9 +434,9 @@
 
     <footer>
         <div class="container">
-            <!-- New Footer Logo Section -->
+            <!-- Footer Logo Section (Locked to the new photo in all modes) -->
             <div class="footer-logo-container">
-                <img id="footer-logo" src="24417692-ced0-4342-92aa-ffaed687c206.png" alt="Clyvern Footer Logo" onerror="this.style.display='none'">
+                <img src="24417692-ced0-4342-92aa-ffaed687c206.png" alt="Clyvern Footer Logo" onerror="this.style.display='none'">
             </div>
             
             <div class="address-line">
@@ -477,7 +482,7 @@
         // Theme Toggle Logic
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
-        const footerLogo = document.getElementById('footer-logo');
+        const headerLogo = document.getElementById('header-logo');
 
         themeToggle.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
@@ -485,11 +490,11 @@
             body.setAttribute('data-theme', newTheme);
             themeToggle.innerHTML = newTheme === 'dark' ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
             
-            // Swap footer logo based on mode
+            // Header Logo Swap Logic
             if (newTheme === 'dark') {
-                footerLogo.src = '24417692-ced0-4342-92aa-ffaed687c206.png';
+                headerLogo.src = '24417692-ced0-4342-92aa-ffaed687c206.png';
             } else {
-                footerLogo.src = 'logo.pdf.png';
+                headerLogo.src = 'Artboard 1.png';
             }
             
             lucide.createIcons();
