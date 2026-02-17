@@ -28,7 +28,6 @@
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Inter', sans-serif;
-            --header-bg: transparent;
         }
 
         [data-theme="light"] {
@@ -132,6 +131,7 @@
 
         [data-theme="light"] header.scrolled {
             background: rgba(248, 250, 252, 0.9);
+            border-bottom: 1px solid rgba(6, 52, 73, 0.1);
         }
 
         .nav-inner {
@@ -271,13 +271,22 @@
             width: 340px; height: 450px; display: none;
             flex-direction: column; overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: var(--dark-bg);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
         }
 
-        .chat-header { padding: 1.2rem; background: var(--primary); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .chat-header { padding: 1.2rem; background: var(--primary); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); color: white; }
         .chat-messages { flex: 1; padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .msg { padding: 10px 14px; border-radius: 16px; font-size: 0.9rem; max-width: 85%; }
-        .msg.bot { background: var(--glass); align-self: flex-start; }
+        .msg.bot { background: var(--glass); align-self: flex-start; color: var(--text-main); }
         .msg.user { background: var(--secondary); color: var(--primary); align-self: flex-end; }
+
+        .chat-input { padding: 1rem; border-top: 1px solid var(--glass-border); display: flex; gap: 8px; }
+        .chat-input input { 
+            flex: 1; background: transparent; border: 1px solid var(--glass-border); 
+            border-radius: 10px; padding: 8px 12px; color: var(--text-main); outline: none;
+        }
 
         /* --- Footer --- */
         footer {
@@ -297,7 +306,7 @@
             color: var(--text-dim);
             font-weight: 500;
             font-size: 0.95rem;
-            white-space: nowrap; /* Forces address and icon onto one line */
+            white-space: nowrap; 
         }
 
         .address-line a { color: inherit; text-decoration: none; transition: var(--transition); }
@@ -316,11 +325,19 @@
             .hero { padding-top: 200px; }
         }
         @media (max-width: 768px) {
-            .container { padding: 0 1rem; } /* Most left position */
-            .hero-content h1 { font-size: 2.8rem; }
-            .brand-watermark { width: 90vw; opacity: 0.25; top: 50%; }
-            .hero-ctas { flex-direction: column; align-items: stretch; max-width: 280px; margin: 2rem auto 0; }
+            .container { padding: 0 1rem; } 
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .contact-group { gap: 0.8rem; }
+            .brand-watermark { 
+                width: 90vw; 
+                opacity: 0.24;
+                top: 50%;
+            }
+            .hero-ctas { flex-direction: column; align-items: stretch; max-width: 300px; margin: 2rem auto 0; }
+            .hero { padding-top: 160px; }
             .logo img { width: 120px; }
+            header.scrolled .logo img { width: 80px; }
             .address-line { white-space: normal; line-height: 1.4; padding: 0 1.5rem; }
         }
     </style>
@@ -338,17 +355,17 @@
 
             <div class="contact-group">
                 <div class="social-tray-header">
-                    <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" title="LinkedIn"><i data-lucide="linkedin" size="20"></i></a>
-                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram"><i data-lucide="instagram" size="20"></i></a>
-                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook"><i data-lucide="facebook" size="20"></i></a>
-                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp"><i data-lucide="message-circle" size="20"></i></a>
+                    <a href="https://www.linkedin.com/company/clyvernco/posts/?feedView=all" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i data-lucide="linkedin" size="20"></i></a>
+                    <a href="https://www.instagram.com/clyvernco/" target="_blank" title="Instagram" aria-label="Instagram"><i data-lucide="instagram" size="20"></i></a>
+                    <a href="https://www.facebook.com/clyvernco" target="_blank" title="Facebook" aria-label="Facebook"><i data-lucide="facebook" size="20"></i></a>
+                    <a href="https://wa.me/201022434470" target="_blank" title="WhatsApp" aria-label="WhatsApp"><i data-lucide="message-circle" size="20"></i></a>
                 </div>
                 
                 <a href="tel:+201022434470" class="phone-link">
                     <i data-lucide="phone" size="18"></i> +20 102 243 4470
                 </a>
 
-                <button id="theme-toggle" style="background:none; border:none; color:var(--text-main); cursor:pointer; display: flex; align-items: center;">
+                <button id="theme-toggle" aria-label="Toggle Light/Dark Mode" style="background:none; border:none; color:var(--text-main); cursor:pointer; display: flex; align-items: center;">
                     <i data-lucide="moon"></i>
                 </button>
             </div>
@@ -401,15 +418,6 @@
         </div>
         <div class="ai-launcher" onclick="toggleChat()">
             <i data-lucide="bot" size="28"></i>
-        </div>
-    </div>
-
-    <!-- Modal (Used for dynamic messages) -->
-    <div id="modal" class="modal" onclick="this.style.display='none'">
-        <div class="glass-card modal-content" onclick="event.stopPropagation()">
-            <div id="modal-body"></div>
-            <br>
-            <button class="btn btn-outline" onclick="document.getElementById('modal').style.display='none'">Close</button>
         </div>
     </div>
 
