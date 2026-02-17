@@ -237,14 +237,14 @@
             width: 70vw;
             max-width: 850px;
             z-index: -1;
-            opacity: 0.12; /* Increased opacity to make it more apparent */
+            opacity: 0.25; /* Increased opacity for more visibility */
             pointer-events: none;
-            filter: grayscale(0.5) contrast(1.1);
+            filter: brightness(1.3) contrast(1.1); /* Adjusted brightness/contrast */
         }
 
         [data-theme="light"] .brand-watermark {
-            opacity: 0.08;
-            filter: grayscale(1) invert(1);
+            opacity: 0.1;
+            filter: grayscale(1) invert(1) brightness(0.8);
         }
 
         /* --- Hero Section --- */
@@ -434,19 +434,19 @@
             .hero-content h1 { font-size: 3.5rem; }
             .hero-content p { font-size: 1.2rem; }
             .contact-group { gap: 1rem; }
-            .brand-watermark { width: 90vw; opacity: 0.1; }
+            .brand-watermark { width: 90vw; opacity: 0.15; }
         }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- Updated Background (Artboard 1.png) - More apparent opacity -->
+    <!-- Brand Background Watermark -->
     <img src="Artboard 1.png" class="brand-watermark" alt="Brand Background" onerror="this.style.display='none'">
 
     <header id="header">
         <div class="container nav-inner">
-            <a href="#" class="logo">
-                <img src="logo.pdf.png" alt="Clyvern Logo" onerror="this.style.display='none'">
+            <a href="https://clyvern.com/" class="logo" target="_blank">
+                <img src="Artboard 1.png" alt="Clyvern Logo" onerror="this.style.display='none'">
                 CLYVERN
             </a>
 
@@ -474,7 +474,7 @@
             <div class="hero-content">
                 <h2 class="reveal">Project Coordinator</h2>
                 <h1 class="reveal">Ahmed Darwesh</h1>
-                <p class="reveal">Orchestrating digital excellence and driving innovation through precision coordination at <strong>Clyvern</strong>.</p>
+                <p class="reveal">Leading structured execution and digital transformation at <strong>Clyvern</strong>.</p>
                 
                 <div class="hero-ctas reveal">
                     <a href="https://wa.me/201022434470" target="_blank" class="btn btn-whatsapp">
@@ -588,7 +588,7 @@
             input.value = '';
 
             setTimeout(() => {
-                let response = "Ahmed is currently coordinating projects at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 102 243 4470.";
+                let response = "Ahmed is currently leading structured execution at Clyvern. You can reach him directly via the WhatsApp button or by calling +20 102 243 4470.";
                 if (query.includes('clyvern')) response = "At Clyvern, Ahmed manages product lifecycles and technical coordination.";
                 if (query.includes('contact') || query.includes('phone') || query.includes('number')) response = "You can call Ahmed at +20 102 243 4470 or use the WhatsApp link for a quick chat.";
                 
